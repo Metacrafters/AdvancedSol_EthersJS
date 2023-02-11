@@ -10,7 +10,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  // env variables are initalised
+  // env variables are initalized
   // contractAddress is deployed smart contract addressed 
   const contractAddress = process.env.CONTRACT_ADDRESS
   // application binary interface is something that defines structure of smart contract deployed.
@@ -66,7 +66,7 @@ export default function Home() {
       setRetrieveLoader(true)
       const signer = provider.getSigner();
   
-      // initalize smartcontract with the essentials detials.
+      // initialize smartcontract with the essentials details.
       const smartContract = new ethers.Contract(contractAddress, abi, provider);
       const contractWithSigner = smartContract.connect(signer);
   
@@ -91,7 +91,7 @@ export default function Home() {
       const smartContract = new ethers.Contract(contractAddress, abi, provider);
       const contractWithSigner = smartContract.connect(signer);
 
-      // interact with the methods in smart contract as it's a write operation, we need to invoke the transation usinf .wait()
+      // interact with the methods in smart contract as it's a write operation, we need to invoke the transaction using .wait()
       const writeNumTX = await contractWithSigner.writeNum(enteredNumber);
       const response = await writeNumTX.wait()
       console.log(await response)
